@@ -30,17 +30,28 @@
 using namespace std;
 
 void solve() {
-   ll n,m;cin>>n>>m;
-   vector<ll> a(n);
-   for(ll i=0;i<n;i++)cin>>a[i];
-   if(*max_element(a.begin(),a.end())<=m){
-       cout<<"YES"<<'\n';
-       return;
-   }
-   sort(a.begin(),a.end());
-   ll s=a[0]+a[1];
-   if(s>m)cout<<"NO\n";
-   else cout<<"YES\n";
+    ll n;cin>>n;
+    vector<ll> a(n),b(n),c(n);
+    for(ll i=0;i<n;i++)cin>>a[i];
+    for(ll i=0;i<n;i++)cin>>b[i];
+    for(ll i=0;i<n;i++)cin>>c[i];
+    ll ans=0,cnt=0;
+    for(ll i=1;i<n;i++){
+        ll t=a[i];
+        ll te=abs(b[i]-c[i])+1;
+        ll tee=t+te;
+        if(te==1){
+            cnt=tee;
+            ans=max(ans,tee);
+        }
+        else{
+            ans=max(ans,tee);
+            ll ccnt=(cnt+t-te+2);
+            ans=max(ans,ccnt);
+            cnt=max(ccnt,tee);
+        }
+    }
+    cout<<ans<<'\n';
 }
 int main(){
     int t = 1;

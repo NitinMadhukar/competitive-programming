@@ -1,7 +1,8 @@
-	/* Nitin Madhukar */
+/* Nitin Madhukar */
 #include<bits/stdc++.h>
 
 #define ll              long long
+#define ld               long double
 #define mp              make_pair
 #define pb              push_back
 #define lb              lower_bound
@@ -13,6 +14,7 @@
 #define vi              vector<int>
 #define vvi             vector<vi>
 #define pi              pair<int,int>
+
 #define PI              3.14159265
 #define M               (int)1000000007
 #define LINF            LONG_MAX
@@ -28,35 +30,24 @@
 
 using namespace std;
 
-bool check(string a,string b){
-	ll n=a.length(),j=0,m=b.length();
-	for(ll i=0;i<n;i++){
-		if(a[i]!=b[j])return false;
-		else{
-			j++;
-			j%=m;
-		}
-	}
-	if(j!=0)return false;
-	else return true;
-}
-
 void solve() {
-   string a,b;cin>>a>>b;
-   	ll n=a.length(),m=b.length();
-   	for(ll i=0;i<m;i++){
-   		string t=b.substr(0,i+1);
-   		if(check(a,t)&&check(b,t)){
-   			ll x=(n)/(i+1),y=m/(i+1);
-   			ll lc=x*y/__gcd(x,y);
-   			while(lc--){
-   				cout<<t;
-   			}
-   			cout<<'\n';
-   			return;
-   		}
-   	}
-   	cout<<"-1\n";
+   ll n,k;cin>>n>>k;
+    vector<ll>a(n);
+    for(ll i=0;i<n;i++)cin>>a[i];
+    ll c=a[0];
+    ll ans=0;
+    for(ll i=1;i<n;i++){
+        ll t=ceil(((ld)(a[i])*(ld)(100))/(ld)(k));
+        if(c<t){
+            ans+=(t-c);
+            c=t+a[i];
+        }
+        else{
+            c+=a[i];
+        }
+    }
+    cout<<ans<<'\n';
+
 }
 int main(){
     int t = 1;

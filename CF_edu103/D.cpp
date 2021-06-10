@@ -2,6 +2,7 @@
 #include<bits/stdc++.h>
 
 #define ll              long long
+#define ld               long double
 #define mp              make_pair
 #define pb              push_back
 #define lb              lower_bound
@@ -30,27 +31,33 @@
 using namespace std;
 
 void solve() {
-   ll n,m;cin>>n>>m;
-   string s;cin>>s;
-   ll mins[n+2]={0},maxs[n+2]={0},mine[n+2]={0},maxe[n+2]={0},a[n+2]={0},ar[n+2]={0};
-   for(ll i=1;i<=n;i++){
-       ll t=(s[i-1]=='+')?1:-1;
-       a[i]=a[i-1]+t;
-       mins[i]=min(mins[i-1],a[i]);
-       maxs[i]=max(maxs[i-1],a[i]);
-   }
-   for(ll i=n;i>=1;i--){
-       ll t=(s[i-1]=='+')?1:-1;
-       ar[i]=ar[i+1]+t;
-       mine[i]=min(mine[i+1],ar[i]);
-       maxe[i]=max(maxe[i+1],ar[i]);
-   }
-   while(m--){
-       ll l,r;cin>>l>>r;
-       ll mn=min(mins[l-1],a[l-1]+ar[r+1]-maxe[r+1]);
-       ll mx=max(maxs[l-1],a[l-1]+ar[r+1]-mine[r+1]);
-       cout<<mx-mn+1<<'\n';
-   }
+    ll n;cin>>n;
+    string a;
+    cin>>a;
+    vector<ll> re(100);
+    for(ll i=0;i<100;i++)re[i]=2;
+    vector<pair<ll,ll>>ar(n+1,{0,0});
+    ll c=1;
+    if(a[0]=='L')ar[1].first++;
+    if(a[n-1]=='R')ar[n-1].second=1;
+    for(ll i=1;i<n;i++){
+        if(a[i]==a[i-1])c=1;
+        else c++;
+        if(a[i]=='R')ar[i+1].first=0;
+        else ar[i+1].first=c;
+    }
+    c=1;
+        for(ll i=0;i<100;i++)re[i]=24*i;
+
+    for(ll i=n-2;i>=0;i--){
+        if(a[i]==a[i+1])c=1;
+        else c++;
+        if(a[i]=='L')ar[i].second=0;
+        else ar[i].second=c;
+    }
+    for(ll i=0;i<=n;i++)cout<<ar[i].first+ar[i].second+1<<" ";
+    cout<<'\n';
+
 }
 int main(){
     int t = 1;

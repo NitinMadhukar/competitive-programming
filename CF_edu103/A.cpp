@@ -29,15 +29,12 @@
 
 using namespace std;
 
-
 void solve() {
-  ll n,k;cin>>n>>k;
-  vector<ll> a;
-  for(ll i=1;i<(2*k)-n;i++)a.pb(i);
-  for(ll i=k;i>=(2*k)-n;i--)a.pb(i);
-  for(ll i=0;i<a.size();i++)cout<<a[i]<<" ";
-  cout<<"\n";
-
+    ll n,k;cin>>n>>k;
+    ll m=n%k;
+    ll ans=(k-m)%k;
+    ans=(ans+n-1)/n;
+    cout<<++ans<<'\n';
 }
 int main(){
     int t = 1;
