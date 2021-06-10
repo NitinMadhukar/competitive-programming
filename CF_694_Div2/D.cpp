@@ -30,30 +30,7 @@
 using namespace std;
 
 void solve() {
-   ll n;cin>>n;
-   vector<ll> a(n);
-   for(ll i=0;i<n;i++)cin>>a[i];
-   vector<pair<ll,ll>> re;
-   ll id=-1;
-   for(ll i=1;i<n;i++){
-       if(a[i]!=a[0]){
-           id=i;
-           re.pb({1,i+1});
-       }
-   }
-   if(id==-1){
-       cout<<"NO\n";
-       return;
-   }
-   for(ll i=1;i<n;i++){
-       if(a[i]==a[0]){
-           re.pb({id+1,i+1});
-       }
-   }
-   cout<<"YES\n";
-   for(auto i:re){
-       cout<<i.first<<" "<<i.second<<'\n';
-   }
+   
 }
 int main(){
     ios::sync_with_stdio(0);

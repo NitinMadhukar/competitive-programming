@@ -1,56 +1,54 @@
-#include <bits/stdc++.h>  // This will work only for g++ compiler.
+/* Nitin Madhukar */
+#include<bits/stdc++.h>
 
+#define ll              long long
+#define ld             long double
+#define mp              make_pair
+#define pb              push_back
+#define lb              lower_bound
+#define ub              upper_bound
+#define all(x)          x.begin(), x.end()
+#define big(x)          greater<x>()
 
-#define for0(i, n) for (int i = 0; i < (int)(n); ++i) // 0 based indexing
-#define for1(i, n) for (int i = 1; i <= (int)(n); ++i) // 1 based indexing
-#define forc(i, l, r) for (int i = (int)(l); i <= (int)(r); ++i) // closed interver from l to r r inclusive
-#define forr0(i, n) for (int i = (int)(n) - 1; i >= 0; --i) // reverse 0 based.
-#define forr1(i, n) for (int i = (int)(n); i >= 1; --i) // reverse 1 based
+#define sp              fixed<<setprecision
+#define vi              vector<int>
+#define vvi             vector<vi>
+#define pi              pair<int,int>
 
-//sh    ort hand for usual tokens
-#define pb push_back
-#define fi first
-#define se second
+#define PI              3.14159265
+#define M               (int)1000000007
+#define LINF            LONG_MAX
+#define NL              LONG_MIN
+#define INF             INT_MAX
+#define NI              INT_MIN
 
-// to be used with algorithms that processes a container Eg: find(all(c),42)
-#define all(x) (x).begin(), (x).end() //Forward traversal
-#define rall(x) (x).rbegin, (x).rend() //reverse traversal
-
-// find if a given value is present in a container. Container version. Runs in log(n) for set and map
-#define present(c,x) ((c).find(x) != (c).end())
-
-// Avoiding wrap around of size()-1 where size is a unsigned int.
-#define sz(a) int((a).size())
-
+#define IOS()           ios_base::sync_with_stdio(0);cin.tie(0);
+#define deb(x)          cerr<<#x<<" : "<<x<<"\n";
+#define deball(x)       for(auto iit:x) cerr<<" "<<iit;cerr<<"\n";
+#define rep(i,b,c)      for(i=b; i<c; ++i)
+#define rrep(i,b,c)     for(i=b; i>=c; --i)
 
 using namespace std;
 
-// Shorthand for commonly used types
-typedef vector<int> vi;
-typedef vector<vi> vvi;
-typedef pair<int, int> ii;
-typedef vector<ii> vii;
-typedef long long ll;
-typedef vector<ll> vll;
-typedef vector<vll> vvll;
-typedef double ld;
-#define mod 1000000007
+void solve() {
+   ld n,k;cin>>n>>k;
+   vector<ld> a(n);
+   for(ll i=0;i<n;i++)cin>>a[i];
+   ll a1=0,a2=0,sum=0;
+   for(ll i=0;i<n;i++){
+       a1+=ceil(a[i]/k);
+       a2+=a[i];
+   }
+    a2=ceil(a2/k);
+   
+   cout<<a2<<" "<<a1<<'\n';
+}
+int main(){
+    int t = 1;
+    cin >> t;
 
+    for (int i = 0; i < t; ++i)
+        solve();
 
-int main()
-{
-    ll tc ;
-    cin>>tc;
-    while (tc--)
-    {
-      int n;
-      cin>>n;
-      int l=trunc(log10(n)) + 1;
-      int r=n%10;
-      int ans=10*(r-1);
-    //   cout<<l;
-      ans+=l*(l+1)/2;
-       cout<<ans<<endl;
-    }
-    return 0;
+return 0;
 }
