@@ -1,68 +1,62 @@
-	/* Nitin Madhukar */
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>  // This will work only for g++ compiler.
 
-#define ll              long long
-#define mp              make_pair
-#define pb              push_back
-#define lb              lower_bound
-#define ub              upper_bound
-#define all(x)          x.begin(), x.end()
-#define big(x)          greater<x>()
 
-#define sp              fixed<<setprecision
-#define vi              vector<int>
-#define vvi             vector<vi>
-#define pi              pair<int,int>
-#define PI              3.14159265
-#define M               (int)1000000007
-#define LINF            LONG_MAX
-#define NL              LONG_MIN
-#define INF             INT_MAX
-#define NI              INT_MIN
+#define for0(i, n) for (int i = 0; i < (int)(n); ++i) // 0 based indexing
+#define for1(i, n) for (int i = 1; i <= (int)(n); ++i) // 1 based indexing
+#define forc(i, l, r) for (int i = (int)(l); i <= (int)(r); ++i) // closed interver from l to r r inclusive
+#define forr0(i, n) for (int i = (int)(n) - 1; i >= 0; --i) // reverse 0 based.
+#define forr1(i, n) for (int i = (int)(n); i >= 1; --i) // reverse 1 based
 
-#define IOS()           ios_base::sync_with_stdio(0);cin.tie(0);
-#define deb(x)          cerr<<#x<<" : "<<x<<"\n";
-#define deball(x)       for(auto iit:x) cerr<<" "<<iit;cerr<<"\n";
-#define rep(i,b,c)      for(i=b; i<c; ++i)
-#define rrep(i,b,c)     for(i=b; i>=c; --i)
+//sh    ort hand for usual tokens
+#define pb push_back
+#define fi first
+#define se second
+
+// to be used with algorithms that processes a container Eg: find(all(c),42)
+#define all(x) (x).begin(), (x).end() //Forward traversal
+#define rall(x) (x).rbegin, (x).rend() //reverse traversal
+
+// find if a given value is present in a container. Container version. Runs in log(n) for set and map
+#define present(c,x) ((c).find(x) != (c).end())
+
+// Avoiding wrap around of size()-1 where size is a unsigned int.
+#define sz(a) int((a).size())
+
 
 using namespace std;
 
-vector<ll> pr(1e7);
+// Shorthand for commonly used types
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+typedef pair<int, int> ii;
+typedef vector<ii> vii;
+typedef long long ll;
+typedef vector<ll> vll;
+typedef vector<vll> vvll;
+typedef double ld;
+#define mod 1000000007
 
-void pri(){
-	vector<bool> is_prime(1e7+1,true);
-	is_prime[0] = is_prime[1] = false;
-	for (ll i = 2; i <= 1e7; i++) {
-	    if (is_prime[i] && (long long)i * i <= 1e7) {
-	        for (ll j = i * i; j <= 1e7; j += i)
-	            is_prime[j] = false;
-	    }
-	}
-	for(ll i=2;i<1e7;i++)
-		if(is_prime[i])
-			pr.push_back(i);
-}
+int main() {
+  int t;cin>>t;
+  while(t--){
+      int n,k;
+      cin>>n>>k;
+      vector<ll> ar(n);
+      int ass[10000];
+      for(int i=0;i<n;i++)cin>>ar[i];
+            for(int i=0;i<10000;i++)ass[i]=i;
 
-void solve() {
-   ll n;cin>>n;
-   ll ans=1,z=1,cun=1;
-   for(ll i=0;i<pr.size();i++){
-   	if(pr[i]>=(cun+n)){
-   		cun=pr[i];
-   		ans*=cun;
-   		z++;
-   	}
-   	if(z==3)break;
-   }
-   cout<<ans<<'\n';
-}
-int main(){
-    int t = 1;
-    cin >> t;
-    pri();
-    for (int i = 0; i < t; ++i)
-        solve();
+      sort(ar.begin(),ar.end());
+      reverse(ar.begin(),ar.end());
+      reverse(ar.begin(),ar.end());
+      for(int i=0;i<10000;i++)ass[i]=i;
+      ll ans=ar[n-1];
+      for(int i=2;i<=k+1;i++)ans+=ar[n-i];
+    //   ans+=ar[n-k];
+    //   ans%=mod;
+            for(int i=0;i<10000;i++)ass[i]=i;
 
-return 0;
+      cout<<ans<<endl;
+  }
+  return 0;
 }
