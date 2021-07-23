@@ -52,43 +52,28 @@
 
 using namespace std;
 
-unordered_set<ll> st;
-
-void sieve(){
-    
-    for(ll i=1;i<1000;i++){
-        ll f=0;
-        for(ll j=0;j<sqrt(i);j++){
-            if(i%j==0){
-                f=1;
-                break;
-            }
-        }
-        if(f==0)
-            st.insert(i);
-    }
-    return ;
-}
-
 void solve() {
-    ll n,m;cin>>n>>m;
-    for(auto i:st)cout<<i<<" ";
+	ll n;cin>>n;
+	vector<string> str(n*3);
+	vector<ll> arr(n*3);
+	unordered_map<string,ll> mp;
+	for(ll i=0;i<3*n;i++){
+		cin>>str[i]>>arr[i];
+		mp[str[i]]+=arr[i];
+	}
 
-    // vvll arr(n,vll(m));
-    // for(ll i=0;i<n;i++){
-    //     for(ll j=0;j<m;j++)
-    //         cin>>arr[i][j];
-    // } 
-        return ;
-
+	vll ans;
+	for(auto i:mp){
+		ans.pb(i.second);
+	}
+	sort(all(ans));
+	write(ans);
 
 }
 int main(){
     IOS();
     ll t = 1;
-    sieve();
-
-    // cin >> t;
+    cin >> t;
 
     for (int i = 0; i < t; ++i)
         solve();
